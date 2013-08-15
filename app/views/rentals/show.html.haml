@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Person:
+  = @rental.person_id
+%p
+  %b House:
+  = @rental.house_id
+%p
+  %b Start date:
+  = @rental.start_date
+%p
+  %b End date:
+  = @rental.end_date
+%p
+  %b Notes:
+  = @rental.notes
+
+= link_to 'Edit', edit_rental_path(@rental)
+\|
+= link_to 'Back', rentals_path
