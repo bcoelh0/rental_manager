@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815103540) do
+ActiveRecord::Schema.define(version: 20130815134634) do
 
   create_table "houses", force: true do |t|
     t.string   "address"
-    t.string   "type"
+    t.string   "category"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "people", force: true do |t|
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20130815103540) do
     t.boolean  "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "rentals", force: true do |t|
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(version: 20130815103540) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|

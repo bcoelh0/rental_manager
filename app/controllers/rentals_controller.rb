@@ -15,6 +15,9 @@ class RentalsController < ApplicationController
   # GET /rentals/new
   def new
     @rental = Rental.new
+    @rental.build_person
+    @houses = current_user.houses.map { |house| [house.address, house.id] }
+    @people = current_user.people.map { |person| [person.name, person.id] }
   end
 
   # GET /rentals/1/edit
@@ -24,8 +27,11 @@ class RentalsController < ApplicationController
   # POST /rentals
   # POST /rentals.json
   def create
-    @rental = Rental.new(rental_params)
-
+    if rental_params[:person_attributes]
+      @rental = Rental.new(rental_params.except!(:person_attributes).merge(:person_attributes => rental_params["person_attributes"].merge(:owner => "false", :user_id => current_user.id)))
+    else
+      @rental = Rental.new(rental_params)
+    end
     respond_to do |format|
       if @rental.save
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
@@ -69,6 +75,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-      params.require(:rental).permit(:person_id, :house_id, :start_date, :end_date, :notes)
+      params.require(:rental).permit(:person_id, :house_id, :start_date, :end_date, :notes, :person_attributes => [:name, :address, :phone_number, :email])
     end
 end

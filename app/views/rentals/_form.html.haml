@@ -6,20 +6,39 @@
         - @rental.errors.full_messages.each do |msg|
           %li= msg
 
+  .field#house_list
+    = f.label :house_id, "Imóvel"
+    = f.select(:house_id, options_for_select(@houses))
+
+  .field#client_list
+    = f.label :person_id, "Cliente"
+    = f.select(:person_id, options_for_select(@people))
+
+  .field_container
+
+  .button#add_client
+    +
+
   .field
-    = f.label :person_id
-    = f.number_field :person_id
-  .field
-    = f.label :house_id
-    = f.number_field :house_id
-  .field
-    = f.label :start_date
+    = f.label :start_date, "Data Entrada"
     = f.date_select :start_date
   .field
-    = f.label :end_date
+    = f.label :end_date, "Data Saída"
     = f.date_select :end_date
   .field
-    = f.label :notes
+    = f.label :notes, "Notas"
     = f.text_area :notes
   .actions
-    = f.submit 'Save'
+    = f.submit "Criar Reserva"
+
+  %script{ :id => "client_fields", :type => "text/html" }
+    %h4 Novo Cliente
+    = f.fields_for :person do |builder|
+      = builder.label :name, "Nome"
+      = builder.text_field :name
+      = builder.label :address, "Morada"
+      = builder.text_field :address
+      = builder.label :phone_number, "Número de Telefone"
+      = builder.text_field :phone_number
+      = builder.label :email, "Email"
+      = builder.text_field :email

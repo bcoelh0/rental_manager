@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :houses
+  has_many :rentals
+  has_many :people
   validates_presence_of :email, :password
 
   def self.sign_in(params)

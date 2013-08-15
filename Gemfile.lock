@@ -161,15 +161,13 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    zurb-foundation (2.2.1.2)
-      jquery-rails (>= 1.0)
-      railties (>= 3.1.0, < 4.0)
+    zurb-foundation (4.0.9)
+      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  coffee-rails (~> 4.0.0)
   cucumber-rails
   database_cleaner
   debugger
@@ -186,4 +184,4 @@ DEPENDENCIES
   thin
   turbolinks
   uglifier (>= 1.3.0)
-  zurb-foundation
+  zurb-foundation (~> 4.0.0)
