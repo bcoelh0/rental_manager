@@ -15,6 +15,8 @@ class HousesController < ApplicationController
   # GET /houses/new
   def new
     @house = House.new
+    @house.build_owner
+    @people = current_user.people.map { |person| [person.name, person.id] }
   end
 
   # GET /houses/1/edit
@@ -24,7 +26,12 @@ class HousesController < ApplicationController
   # POST /houses
   # POST /houses.json
   def create
-    @house = House.new(house_params)
+
+    if house_params[:owner_attributes]
+      @house = House.new(house_params.except!(:owner_attributes).merge(:owner_attributes => house_params[:owner_attributes].merge(:owner => "true", :user_id => current_user.id)).merge(:user_id => current_user.id))
+    else
+      @house = House.new(house_params.merge(:user_id => current_user.id))
+    end
 
     respond_to do |format|
       if @house.save
@@ -69,6 +76,6 @@ class HousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
-      params[:house]
+      params.require(:house).permit(:person_id, :address, :category, :user_id, :owner_attributes => [:name, :address, :phone_number, :email])
     end
 end

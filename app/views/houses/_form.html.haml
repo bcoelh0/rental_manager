@@ -1,10 +1,40 @@
 = form_for @house do |f|
   - if @house.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@house.errors.count, "error")} prohibited this house from being saved:"
+      %h2= "#{pluralize(@house.errors.count, "error")} prohibited this rental from being saved:"
       %ul
         - @house.errors.full_messages.each do |msg|
           %li= msg
 
+  .field#owner_list
+    = f.label :person_id, "Proprietário"
+    = f.select(:person_id, options_for_select(@people))
+
+  .field_container
+
+  .button#add_owner
+    Adicionar Propiretário
+
+  .field
+    = f.label :address, "Morada"
+    = f.text_field :address
+
+  .field
+    = f.label :category, "Tipo"
+    = f.text_field :category
+
   .actions
-    = f.submit 'Save'
+    = f.submit "Criar Imóvel"
+
+  %script{ :id => "owner_fields", :type => "text/html" }
+    %h4 Novo Propriatário
+    = f.fields_for :owner do |builder|
+      = builder.label :name, "Nome"
+      = builder.text_field :name
+      = builder.label :address, "Morada"
+      = builder.text_field :address
+      = builder.label :phone_number, "Número de Telefone"
+      = builder.text_field :phone_number
+      = builder.label :email, "Email"
+      = builder.text_field :email
+    %hr

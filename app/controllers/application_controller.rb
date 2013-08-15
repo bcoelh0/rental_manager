@@ -7,5 +7,13 @@ class ApplicationController < ActionController::Base
     User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user
+  def add_owner_attr(params, value, type)
+    if type == "client"
+      params.except!(:person_attributes).merge(:person_attributes => params["person_attributes"].merge(:owner => value, :user_id => current_user.id)).merge(:user_id => current_user.id)
+    elsif type == "owner"
+      params.except!(:owner).merge(:owner => params["owner"].merge(:owner => value, :user_id => current_user.id)).merge(:user_id => current_user.id)
+    end
+  end
+
+  helper_method :current_user, :add_owner_attr
 end

@@ -28,7 +28,7 @@ class RentalsController < ApplicationController
   # POST /rentals.json
   def create
     if rental_params[:person_attributes]
-      @rental = Rental.new(rental_params.except!(:person_attributes).merge(:person_attributes => rental_params["person_attributes"].merge(:owner => "false", :user_id => current_user.id)))
+      @rental = Rental.new(rental_params.except!(:person_attributes).merge(:person_attributes => rental_params["person_attributes"].merge(:owner => value, :user_id => current_user.id)).merge(:user_id => current_user.id))
     else
       @rental = Rental.new(rental_params)
     end
