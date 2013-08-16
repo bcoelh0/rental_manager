@@ -21,18 +21,17 @@ class HousesController < ApplicationController
 
   # GET /houses/1/edit
   def edit
+    @people = current_user.people.map { |person| [person.name, person.id] }
   end
 
   # POST /houses
   # POST /houses.json
   def create
-
     if house_params[:owner_attributes]
       @house = House.new(house_params.except!(:owner_attributes).merge(:owner_attributes => house_params[:owner_attributes].merge(:owner => "true", :user_id => current_user.id)).merge(:user_id => current_user.id))
     else
       @house = House.new(house_params.merge(:user_id => current_user.id))
     end
-
     respond_to do |format|
       if @house.save
         format.html { redirect_to @house, notice: 'House was successfully created.' }

@@ -8,16 +8,22 @@
 
   .field#house_list
     = f.label :house_id, "Imóvel"
-    = f.select(:house_id, options_for_select(@houses))
+    - if new?(params)
+      = f.select(:house_id, options_for_select(@houses))
+    -else
+    = f.select(:house_id, options_for_select(@houses, @rental.house.id))
 
   .field#client_list
     = f.label :person_id, "Cliente"
-    = f.select(:person_id, options_for_select(@people))
+    - if new?(params)
+      = f.select(:person_id, options_for_select(@people))
+    -else
+      = f.select(:person_id, options_for_select(@people, @rental.person.id))
 
   .field_container
-
-  .button#add_client
-    +
+  - if new?(params)
+    .button#add_client
+      +
 
   .field
     = f.label :start_date, "Data Entrada"
@@ -29,7 +35,8 @@
     = f.label :notes, "Notas"
     = f.text_area :notes
   .actions
-    = f.submit "Criar Reserva"
+    = f.submit "Criar Reserva" if new?(params)
+    = f.submit "Alterar Reserva" if !new?(params)
 
   %script{ :id => "client_fields", :type => "text/html" }
     %h4 Novo Cliente

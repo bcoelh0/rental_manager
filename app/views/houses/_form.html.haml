@@ -8,12 +8,12 @@
 
   .field#owner_list
     = f.label :person_id, "Proprietário"
-    = f.select(:person_id, options_for_select(@people))
+    = f.select(:person_id, options_for_select(@people, @house.owner.id))
 
   .field_container
-
-  .button#add_owner
-    Adicionar Propiretário
+  - if new?(params)
+    .button#add_owner
+      Adicionar Propiretário
 
   .field
     = f.label :address, "Morada"

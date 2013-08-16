@@ -22,13 +22,15 @@ class RentalsController < ApplicationController
 
   # GET /rentals/1/edit
   def edit
+    @houses = current_user.houses.map { |house| [house.address, house.id] }
+    @people = current_user.people.map { |person| [person.name, person.id] }
   end
 
   # POST /rentals
   # POST /rentals.json
   def create
     if rental_params[:person_attributes]
-      @rental = Rental.new(rental_params.except!(:person_attributes).merge(:person_attributes => rental_params["person_attributes"].merge(:owner => value, :user_id => current_user.id)).merge(:user_id => current_user.id))
+      @rental = Rental.new(rental_params.except!(:person_attributes).merge(:person_attributes => rental_params["person_attributes"].merge(:owner => false, :user_id => current_user.id)).merge(:user_id => current_user.id))
     else
       @rental = Rental.new(rental_params)
     end

@@ -15,5 +15,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_user, :add_owner_attr
+  def new?(params)
+    params[:action] == "new"
+  end
+
+  helper_method :current_user, :add_owner_attr, :new?
 end
