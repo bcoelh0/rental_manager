@@ -6,12 +6,40 @@
     / <meta http-equiv="X-UA-Compatible" content="IE=7" />
     / Set the viewport width to device width for mobile
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title= content_for?(:title) ? yield(:title) : "Untitled"
+    %title= content_for?(:title) ? yield(:title) : "Gestor Reservas"
     / Included CSS Files
     = stylesheet_link_tag    "application"
     / Included JS Files
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    %nav.top-bar
+      %ul.title-area
+        / Title Area
+        %li.name
+          %h1
+            %a{:href => "/"} Gestor Reservas
+      %section.top-bar-section
+        / Left Nav Section
+        %ul.left
+          %li.divider
+          - if params[:action] == "new" and params[:controller] == "rental"
+            %li.active
+              =link_to "Adicionar Reserva", new_rental_path
+          - else
+            %li
+              =link_to "Adicionar Reserva", new_rental_path
+          %li.divider
+          %li
+            %a{:href => "#"} Main Item 2
+          %li.divider
+          %li
+            %a{:href => "#"} Main Item 3
+          %li.divider
+        / Right Nav Section
+        %ul.right
+          %li.divider.show-for-small
+          %li.has-form
+            %a.button.small.secondary{:href => "#"} Sign Out
     .container
       = yield

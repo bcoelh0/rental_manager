@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
+  before_filter :set_user, :only => [:index, :edit]
+
   def landing
   end
 
   def index
+    @entries_yesterday, @exits_yesterday, @empty_yesterday = @user.events(Date.yesterday)
+    @entries_today, @exits_today, @empty_today = @user.events(Date.current)
+    @entries_tomorrow, @exits_tomorrow, @empty_tomorrow = @user.events(Date.tomorrow)
   end
 
   def sign_in
@@ -57,6 +62,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = current_user
+  end
 
   def user_params
     params.require(:user).permit(:email, :password)

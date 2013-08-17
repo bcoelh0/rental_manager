@@ -1,2 +1,63 @@
-%h1 Users#index
-%p Find me in app/views/users/index.html.haml
+.row
+  .large-4.columns
+    %h2 Ontem
+    - if @entries_yesterday.count > 0
+      %h4 Entradas
+      %ul
+        - @entries_yesterday.each do |entry|
+          %li= link_to entry.client.name, entry.client
+      %hr
+    - if @exits_yesterday.count > 0
+      %h4 Saídas
+      %ul
+        - @exits_yesterday.each do |exit|
+          %li= link_to exit.client.name, exit
+      %hr
+    - if @empty_yesterday.count > 0
+      %h4 Imóveis Livres
+      %ul
+        - @empty_yesterday.each do |empty_house|
+          %li= link_to empty_house.address, empty_house
+      %hr
+
+  .large-4.columns.panel
+    %h2 Hoje
+    - if @entries_today.count > 0
+      %h4 Entradas
+      %ul
+        - @entries_today.each do |entry|
+          %li= link_to entry.client.name, entry.client
+      %hr
+    - if @exits_today.count > 0
+      %h4 Saídas
+      %ul
+        - @exits_today.each do |exit|
+          = link_to exit.client.name, exit
+      %hr
+    - if @empty_today.count > 0
+      %h4 Imóveis Livres
+      %ul
+        - @empty_today.each do |empty_house|
+          %li= link_to empty_house.address, empty_house
+      %hr
+
+  .large-4.columns
+    %h2 Amanhã
+    - if @entries_tomorrow.count > 0
+      %h4 Entradas
+      %ul
+        - @entries_tomorrow.each do |entry|
+          %li= link_to entry.client.name, entry.client
+      %hr
+    - if @exits_tomorrow.count > 0
+      %h4 Saídas
+      %ul
+        - @exits_tomorrow.each do |exit|
+          %li= link_to exit.client.name, exit
+      %hr
+    - if @empty_tomorrow.count > 0
+      %h4 Imóveis Livres
+      %ul
+        - @empty_tomorrow.each do |empty_house|
+          %li= link_to empty_house.address, empty_house
+      %hr

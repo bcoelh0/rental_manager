@@ -15,4 +15,11 @@ class User < ActiveRecord::Base
   def self.encrypt(pass)
     Digest::MD5.hexdigest(pass)
   end
+
+  def events(date)
+    rentals.inject(entries = []) { |mem, rental| entries << rental if rental.start_date == date }
+    rentals.inject(exits = []) { |mem, rental| exits << rental if rental.end_date == date }
+    houses.inject(empty = []) { |mem, house| empty << house if house.empty?(date) }
+    return entries, exits, empty
+  end
 end

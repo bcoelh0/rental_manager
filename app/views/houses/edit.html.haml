@@ -1,7 +1,8 @@
-%h1 Editing house
+.rows
+  .large-12.columns
+    %h1 Editar Imóvel
 
-= render 'form'
-
-= link_to 'Show', @house
-\|
-= link_to 'Back', houses_path
+.row
+  .large-6.columns
+    = render 'form'
+    = link_to 'Show', @house, :class => "button"

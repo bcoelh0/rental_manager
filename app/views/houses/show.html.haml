@@ -1,6 +1,28 @@
-%p#notice= notice
+.row
+  .large-12.columns
+    %p#notice= notice
+    %h1 Imóvel
+
+.row
+  .large-6.columns
+    %h4 Caracteristicas
+    %p
+      %b Proprietário:
+      = link_to @house.owner.name, @house.owner
+    %p
+      %b Morada:
+      = @house.address
+    %p
+      %b Tipologia:
+      = @house.category
+
+    = link_to 'Edit', edit_house_path(@house), :class => "button"
 
 
-= link_to 'Edit', edit_house_path(@house)
-\|
-= link_to 'Back', houses_path
+  .large-6.columns
+    %h4 Reservas
+    %ul
+      - @house.rentals.each do |rental|
+        %li= link_to rental.client.name, rental.client
+
+

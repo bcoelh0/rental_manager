@@ -1,7 +1,8 @@
-%h1 Editing rental
+.rows
+  .large-12.columns
+    %h1 Editar Reserva
 
-= render 'form'
-
-= link_to 'Show', @rental
-\|
-= link_to 'Back', rentals_path
+.row
+  .large-6.columns
+    = render 'form'
+    = link_to 'Show', @rental, :class => "button"

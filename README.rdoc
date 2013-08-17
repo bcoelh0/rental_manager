@@ -1,8 +1,23 @@
 == TO DO
 
-* Index page
-* Can Can
 * Specs
+* Infinite session
+* Registration page
+* Production configs
+
+=Bugs
+* New rental, clients array with empty spaces
+
+
+=After
+* gem best_in_place
+
+
+=Done
+* Validates house.empty? before rental is created
 * Improve context (make clients in rental model)
 * Make rental, house and person edition
-
+* Index page
+* Can Can
+* Finish populate
+* Add navbar

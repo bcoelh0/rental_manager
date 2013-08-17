@@ -1,7 +1,11 @@
-%h1 Editing person
+.rows
+  .large-12.columns
+    - if @person.owner
+      %h1 Editar Proprietário
+    -else
+      %h1 Editar Cliente
 
-= render 'form'
-
-= link_to 'Show', @person
-\|
-= link_to 'Back', people_path
+.row
+  .large-6.columns
+    = render 'form'
+    = link_to 'Show', @person, :class => "button"

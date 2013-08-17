@@ -12,12 +12,14 @@ group :production do
 end
 group :development, :test do
   gem "sqlite3"
-  gem "cucumber-rails"
+  gem "cucumber-rails", :require => false
   gem "rspec-rails"
   gem "database_cleaner"
   gem "debugger"
   gem "debugger"
+  gem "factory_girl_rails"
 end
 gem "haml", "~> 4.0.3"
 gem "haml-rails", "~> 0.4"
 gem "zurb-foundation", "~> 4.0.0"
+gem "cancan"

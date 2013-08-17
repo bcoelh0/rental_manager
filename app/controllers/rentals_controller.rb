@@ -15,15 +15,16 @@ class RentalsController < ApplicationController
   # GET /rentals/new
   def new
     @rental = Rental.new
-    @rental.build_person
+    #debugger
+    @rental.build_client
     @houses = current_user.houses.map { |house| [house.address, house.id] }
-    @people = current_user.people.map { |person| [person.name, person.id] }
+    @clients = current_user.people.map { |person| [person.name, person.id] unless person.owner }
   end
 
   # GET /rentals/1/edit
   def edit
     @houses = current_user.houses.map { |house| [house.address, house.id] }
-    @people = current_user.people.map { |person| [person.name, person.id] }
+    @clients = current_user.people.map { |person| [person.name, person.id] unless person.owner }
   end
 
   # POST /rentals
@@ -32,7 +33,7 @@ class RentalsController < ApplicationController
     if rental_params[:person_attributes]
       @rental = Rental.new(rental_params.except!(:person_attributes).merge(:person_attributes => rental_params["person_attributes"].merge(:owner => false, :user_id => current_user.id)).merge(:user_id => current_user.id))
     else
-      @rental = Rental.new(rental_params)
+      @rental = Rental.new(rental_params.merge(:user_id => current_user.id))
     end
     respond_to do |format|
       if @rental.save

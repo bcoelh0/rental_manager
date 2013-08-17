@@ -24,7 +24,10 @@
     = f.text_field :category
 
   .actions
-    = f.submit "Criar Imóvel"
+    - if new?(params)
+      = f.submit "Criar Imóvel", :class => "button"
+    - else
+      = f.submit "Alterar Imóvel", :class => "button"
 
   %script{ :id => "owner_fields", :type => "text/html" }
     %h4 Novo Propriatário
