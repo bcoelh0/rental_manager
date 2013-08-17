@@ -10,7 +10,7 @@ class Rental < ActiveRecord::Base
 
   private
 
-  def empty_house?
-    house.empty?
-  end
+ # def empty_house?()
+ #   house.empty?(Date.current)
+ # end
 end

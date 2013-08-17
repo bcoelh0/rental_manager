@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :password
 
   def self.sign_in(params)
-    if (user = User.find_by_email params[:email]) and user.password == User.encrypt(params["password"])
+    if (user = User.find_by_email params[:email]) and user.password == User.encrypt(params[:password])
       user.id
     else
       false
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   def events(date)
     rentals.inject(entries = []) { |mem, rental| entries << rental if rental.start_date == date }
     rentals.inject(exits = []) { |mem, rental| exits << rental if rental.end_date == date }
-    houses.inject(empty = []) { |mem, house| empty << house if house.empty?(date) }
+    houses.inject(empty = []) { |mem, house| empty << house if house.vacant?(date) }
     return entries, exits, empty
   end
 end

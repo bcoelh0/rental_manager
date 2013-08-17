@@ -2,7 +2,8 @@
 
 * Specs
 * Infinite session
-* Registration page
+* Jump to date
+* Selecção de datas em linha
 * Production configs
 
 =Bugs
@@ -21,3 +22,4 @@
 * Can Can
 * Finish populate
 * Add navbar
+* Registration page

@@ -5,7 +5,7 @@ class House < ActiveRecord::Base
   accepts_nested_attributes_for :owner
   validates_presence_of :owner, :user
 
-  def empty?(date)
+  def vacant?(date)
     unless rentals.empty? #empty from Array, like: array.empty?
       if rentals.last.start_date >= date and rentals.last.end_date < date
         false

@@ -1,3 +1,9 @@
+.row.colapse
+  %form{ :method => :post, :url => select_date_user_path(current_user) }
+    .small-4
+      = date_select :date, :user
+    = submit_tag "Ir Para Data", :class => "button"
+
 .row
   .large-4.columns
     %h2 Ontem
@@ -5,7 +11,7 @@
       %h4 Entradas
       %ul
         - @entries_yesterday.each do |entry|
-          %li= link_to entry.client.name, entry.client
+          %li= link_to entry.client.name, entry
       %hr
     - if @exits_yesterday.count > 0
       %h4 Saídas
@@ -26,7 +32,7 @@
       %h4 Entradas
       %ul
         - @entries_today.each do |entry|
-          %li= link_to entry.client.name, entry.client
+          %li= link_to entry.client.name, entry
       %hr
     - if @exits_today.count > 0
       %h4 Saídas
@@ -47,7 +53,7 @@
       %h4 Entradas
       %ul
         - @entries_tomorrow.each do |entry|
-          %li= link_to entry.client.name, entry.client
+          %li= link_to entry.client.name, entry
       %hr
     - if @exits_tomorrow.count > 0
       %h4 Saídas

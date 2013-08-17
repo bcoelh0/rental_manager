@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
   before_filter :set_user, :only => [:index, :edit]
 
-  def landing
-  end
-
   def index
     @entries_yesterday, @exits_yesterday, @empty_yesterday = @user.events(Date.yesterday)
     @entries_today, @exits_today, @empty_today = @user.events(Date.current)
@@ -11,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def sign_in
+    redirect_to users_path if current_user
     @user = User.new
   end
 
@@ -59,6 +57,10 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def select_date
+    debugger
   end
 
   private
