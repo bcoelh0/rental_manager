@@ -5,9 +5,11 @@
 * Jump to date
 * Selecção de datas em linha
 * Production configs
+* Casas continuam livres mesmo depois de reserva?
 
 =Bugs
 * New rental, clients array with empty spaces
+* Depois de registo pede para login
 
 
 =After

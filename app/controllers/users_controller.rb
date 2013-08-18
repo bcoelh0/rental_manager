@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :set_user, :only => [:index, :edit]
+  before_filter :set_user, :only => [:index, :edit, :select_date]
 
   def index
     @entries_yesterday, @exits_yesterday, @empty_yesterday = @user.events(Date.yesterday)
@@ -38,7 +38,9 @@ class UsersController < ApplicationController
     @user.password = User.encrypt(user_params["password"])
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+
+        format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -60,7 +62,8 @@ class UsersController < ApplicationController
   end
 
   def select_date
-    debugger
+    @date = Date.civil(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+    @entries_date, @exits_date, @empty_date = @user.events(@date)
   end
 
   private

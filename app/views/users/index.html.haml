@@ -1,8 +1,8 @@
-.row.colapse
-  %form{ :method => :post, :url => select_date_user_path(current_user) }
-    .small-4
-      = date_select :date, :user
-    = submit_tag "Ir Para Data", :class => "button"
+
+=form_tag select_date_user_path(current_user), :method => :post, :class => "custom" do
+  .row.collapse
+    = select_date Date.today, {}, { :class => "large-3 columns custom dropdown small" }
+    = submit_tag "Ir Para Data", :class => "large-3 columns button small pull-4"
 
 .row
   .large-4.columns
@@ -38,7 +38,7 @@
       %h4 Saídas
       %ul
         - @exits_today.each do |exit|
-          = link_to exit.client.name, exit
+          %li= link_to exit.client.name, exit
       %hr
     - if @empty_today.count > 0
       %h4 Imóveis Livres

@@ -1,0 +1,30 @@
+.row
+  %h1= "Dia: #{@date}"
+  =form_tag select_date_user_path(current_user), :method => :post, :class => "custom" do
+    .row.collapse
+      = select_date @date, {}, { :class => "large-3 columns custom dropdown small" }
+      = submit_tag "Ir Para Data", :class => "large-3 columns button small pull-4"
+
+  .large-4.columns
+
+  .large-4.columns.panel
+    - if @entries_date.count > 0
+      %h4 Entradas
+      %ul
+        - @entries_date.each do |entry|
+          %li= link_to entry.client.name, entry
+      %hr
+    - if @exits_date.count > 0
+      %h4 Saídas
+      %ul
+        - @exits_date.each do |exit|
+          = link_to exit.client.name, exit
+      %hr
+    - if @empty_date.count > 0
+      %h4 Imóveis Livres
+      %ul
+        - @empty_date.each do |empty_house|
+          %li= link_to empty_house.address, empty_house
+      %hr
+
+  .large-4.columns

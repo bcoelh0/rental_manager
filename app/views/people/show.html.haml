@@ -28,6 +28,6 @@
     %h4 Reservas
     %ul
       - @person.rentals.each do |rental|
-        %li= link_to rental.house.address, rental.house
+        %li= link_to rental.house.address, rental
 
 
