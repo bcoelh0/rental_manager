@@ -4,12 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    begin
-      User.find(session[:user_id]) if session[:user_id]
-    rescue ActiveRecord::RecordNotFound
-      reset_session
-      redirect_to "/"
-    end
+    User.find(session[:user_id]) if session[:user_id]
   end
 
   def add_owner_attr(params, value, type)

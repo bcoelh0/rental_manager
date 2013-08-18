@@ -29,7 +29,8 @@ class RentalsController < ApplicationController
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render action: 'show', status: :created, location: @rental }
       else
-        format.html { render action: 'new' }
+        all_people_and_houses
+        format.html { render "new" }
         format.json { render json: @rental.errors, status: :unprocessable_entity }
       end
     end
@@ -42,6 +43,7 @@ class RentalsController < ApplicationController
         format.html { redirect_to @rental, notice: 'Rental was successfully updated.' }
         format.json { head :no_content }
       else
+        all_people_and_houses
         format.html { render action: 'edit' }
         format.json { render json: @rental.errors, status: :unprocessable_entity }
       end
@@ -60,7 +62,7 @@ class RentalsController < ApplicationController
 
   def all_people_and_houses
     current_user.houses.inject(@houses = []) { |mem, house| @houses << [house.address, house.id] }
-    current_user.people.inject(@clients = []) { |mem, person| @clients << [person.name, person.id] unless person.owner }
+    current_user.people.inject(@clients = []) { |mem, person| @clients << [person.name, person.id] }
   end
 
   def set_rental

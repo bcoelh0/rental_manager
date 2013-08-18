@@ -24,15 +24,19 @@
           / Left Nav Section
           %ul.left
             %li.divider
-            - if params[:action] == "new" and params[:controller] == "rental"
-              %li.active
-                =link_to "Adicionar Reserva", new_rental_path
-            - else
               %li
                 =link_to "Adicionar Reserva", new_rental_path
             %li.divider
             %li
               =link_to "Adicionar Imóvel", new_house_path
+            %li.divider
+            %li.has-dropdown
+              = link_to "Menu", "#"
+              %ul.dropdown
+                %li
+                  = link_to "Proprietários/Clientes", people_path
+                %li
+                  = link_to "Imóveis", houses_path
             %li.divider
           / Right Nav Section
           %ul.right

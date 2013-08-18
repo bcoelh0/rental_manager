@@ -1,27 +1,39 @@
-%h1 Listing people
+.row
+  .large-12.columns
+    %h1 Clientes e proprietários
 
-%table
-  %tr
-    %th Name
-    %th Address
-    %th Phone number
-    %th Email
-    %th Owner
-    %th
-    %th
-    %th
+.row
+  .large-12.columns
+    %h4 Clientes
 
-  - @people.each do |person|
-    %tr
-      %td= person.name
-      %td= person.address
-      %td= person.phone_number
-      %td= person.email
-      %td= person.owner
-      %td= link_to 'Show', person
-      %td= link_to 'Edit', edit_person_path(person)
-      %td= link_to 'Destroy', person, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %table
+      %tr
+        %th Nome
+        %th Morada
+        %th Número Telefone
+        %th Email
 
-%br
+      - @clients.each do |client|
+        %tr
+          %td= link_to client.name, client
+          %td= client.address
+          %td= client.phone_number
+          %td= client.email
+    %br
 
-= link_to 'New Person', new_person_path
+    %h4 Proprietários
+
+    %table
+      %tr
+        %th Nome
+        %th Morada
+        %th Número Telefone
+        %th Email
+
+      - @owners.each do |owner|
+        %tr
+          %td= link_to owner.name, owner
+          %td= owner.address
+          %td= owner.phone_number
+          %td= owner.email
+    %br

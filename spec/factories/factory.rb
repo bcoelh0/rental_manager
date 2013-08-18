@@ -5,17 +5,17 @@ FactoryGirl.define do
   end
 
   factory :person do
-    name "Zé"
-    address "Rua random, nº 5"
-    email "ze@email.com"
-    phone_number "912222222"
+    name Faker::Name.name
+    address Faker::Address.street_address
+    email Faker::Internet.email
+    phone_number Faker::PhoneNumber.cell_phone
     owner false
     user
   end
 
   factory :house do
-    address "Rua da casa random, nº10"
-    category "T5"
+    address Faker::Address.street_address
+    category ["T0", "T1", "T2", "T3", "T4", "T5"].sample
     association :owner, :factory => :person
     user
   end
@@ -25,7 +25,7 @@ FactoryGirl.define do
     house
     start_date Date.current
     end_date Date.tomorrow
-    notes "Random notes"
+    notes Faker::Lorem.paragraph(3)
     user
   end
 end

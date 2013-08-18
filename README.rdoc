@@ -2,18 +2,19 @@
 
 * Specs
 * Infinite session
-* Jump to date
-* Selecção de datas em linha
 * Production configs
-* Casas continuam livres mesmo depois de reserva?
+* Show owners owses
+* JS phone numbers, just numbers
+* Add delete button to show
+
+
 
 =Bugs
-* New rental, clients array with empty spaces
-* Depois de registo pede para login
 
 
 =After
 * gem best_in_place
+* phisical printing
 
 
 =Done
@@ -25,3 +26,12 @@
 * Finish populate
 * Add navbar
 * Registration page
+* New rental, clients array with empty spaces
+* [bug] Bug after registration
+* Jump to date
+* Selecção de datas em linha
+* [bug] Empty houses after rental submited
+* Validates empty_house?
+* Menu: Todas as casas, todos os proprietários, todos os clientes, etc
+* Deletes house when deleting owner
+* Deletes rental when deleting house or client

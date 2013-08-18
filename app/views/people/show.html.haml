@@ -8,7 +8,7 @@
 
 .row
   .large-6.columns
-    %h4 Caracteristicas
+    %h4 Características
     %p
       %b Nome:
       = @person.name
@@ -22,12 +22,20 @@
       %b Email:
       = @person.email
 
-    = link_to 'Edit', edit_person_path(@person), :class => "button"
+    = link_to 'Editar', edit_person_path(@person), :class => "button"
+
+    = link_to 'Apagar', @person ,:method => :delete, :data => { :confirm => "Ao apagar este utilizador irá apagar imóveis e aluguers associados." }, :class => "button alert"
+
 
   .large-6.columns
-    %h4 Reservas
-    %ul
-      - @person.rentals.each do |rental|
-        %li= link_to rental.house.address, rental
+    - unless @person.rentals.empty?
+      %h4 Reservas
+      %ul
+        - @person.rentals.each do |rental|
+          %li= link_to rental.house.address, rental
 
-
+    - unless @person.houses.empty?
+      %h4 Imóveis
+      %ul
+        - @person.houses.each do |house|
+          %li= link_to house.address, house

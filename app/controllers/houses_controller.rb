@@ -16,12 +16,13 @@ class HousesController < ApplicationController
   def new
     @house = House.new
     @house.build_owner
-    @people = current_user.people.map { |person| [person.name, person.id] }
+    #@owners = current_user.people.where :owner => true
+    current_user.people.inject(@owners = []) { |mem, person| @owners << [person.name, person.id] if person.owner }
   end
 
   # GET /houses/1/edit
   def edit
-    @people = current_user.people.map { |person| [person.name, person.id] }
+    current_user.people.inject(@owners = []) { |mem, person| @owners << [person.name, person.id] if person.owner }
   end
 
   # POST /houses

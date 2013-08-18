@@ -4,7 +4,8 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @owners = current_user.people.where :owner => true
+    @clients = current_user.people.where :owner => false
   end
 
   # GET /people/1

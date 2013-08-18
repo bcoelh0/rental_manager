@@ -18,6 +18,7 @@ group :development, :test do
   gem "debugger"
   gem "debugger"
   gem "factory_girl_rails"
+  gem "faker"
 end
 gem "haml", "~> 4.0.3"
 gem "haml-rails", "~> 0.4"
