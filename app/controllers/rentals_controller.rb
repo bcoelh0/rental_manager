@@ -19,8 +19,8 @@ class RentalsController < ApplicationController
   end
 
   def create
-    if rental_params[:person_attributes]
-      @rental = Rental.new(rental_params.except!(:person_attributes).merge(:person_attributes => rental_params["person_attributes"].merge(:owner => false, :user_id => current_user.id)).merge(:user_id => current_user.id))
+    if rental_params[:client_attributes]
+      @rental = Rental.new(rental_params.except!(:client_attributes).merge(:client_attributes => rental_params[:client_attributes].merge(:owner => false, :user_id => current_user.id)).merge(:user_id => current_user.id))
     else
       @rental = Rental.new(rental_params.merge(:user_id => current_user.id))
     end
@@ -35,7 +35,6 @@ class RentalsController < ApplicationController
       end
     end
   end
-
 
   def update
     respond_to do |format|
@@ -70,6 +69,6 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:rental).permit(:person_id, :house_id, :start_date, :end_date, :notes, :person_attributes => [:name, :address, :phone_number, :email])
+    params.require(:rental).permit(:person_id, :house_id, :start_date, :end_date, :notes, :client_attributes => [:name, :address, :phone_number, :email])
   end
 end

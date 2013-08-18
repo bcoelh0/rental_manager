@@ -5,7 +5,7 @@ gem "sass-rails", "~> 4.0.0.rc1"
 gem "uglifier", ">= 1.3.0"
 gem "jquery-rails"
 gem "jbuilder", "~> 1.0.1"
-gem "sdoc", require: false, :group => :doc
+gem "sdoc", :require => false, :group => :doc
 group :production do
   gem "thin"
   gem "pg"

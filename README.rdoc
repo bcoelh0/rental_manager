@@ -3,10 +3,6 @@
 * Specs
 * Infinite session
 * Production configs
-* Show owners owses
-* JS phone numbers, just numbers
-* Add delete button to show
-
 
 
 =Bugs
@@ -35,3 +31,6 @@
 * Menu: Todas as casas, todos os proprietários, todos os clientes, etc
 * Deletes house when deleting owner
 * Deletes rental when deleting house or client
+* Add delete button to show
+* Show owners hoses
+* JS phone numbers, just numbers

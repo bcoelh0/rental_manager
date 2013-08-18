@@ -8,4 +8,8 @@ $(document).ready(function(){
     $("div.field_container").html($("#owner_fields").html());
     $("div.field_container").show();
   });
+
+  $("body").on("keydown", "#house_owner_attributes_phone_number", function(event){
+    only_numbers();
+  });
 });

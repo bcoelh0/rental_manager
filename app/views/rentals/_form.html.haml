@@ -5,16 +5,18 @@
       %ul
         - @rental.errors.messages.each do |k, msg|
           %li= msg[0]
-
+      %ul
+        - @rental.errors.full_messages.each do |msg|
+          %li= msg
   .field#client_list
     = f.label :person_id, "Cliente"
-    - if new?(params)
+    - if new?(params) or params[:action] == "create"
       = f.select(:person_id, options_for_select(@clients), {}, { :class => "custom dropdown" })
     -else
       = f.select(:person_id, options_for_select(@clients, @rental.client.id), {}, { :class => "custom dropdown" })
 
   .field_container
-  - if new?(params)
+  - if new?(params) or params[:action] == "create"
     .button#add_client
       Novo Cliente
 

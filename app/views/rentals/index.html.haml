@@ -1,27 +1,22 @@
-%h1 Listing rentals
+.row
+  .large-12.columns
+    %h1 Reservas
 
-%table
-  %tr
-    %th Person
-    %th House
-    %th Start date
-    %th End date
-    %th Notes
-    %th
-    %th
-    %th
+.row
+  .large-12.columns
+    %table
+      %tr
+        %th Cliente
+        %th Imóvel
+        %th Data Entrada
+        %th Data Saída
+        %th
 
-  - @rentals.each do |rental|
-    %tr
-      %td= rental.person_id
-      %td= rental.house_id
-      %td= rental.start_date
-      %td= rental.end_date
-      %td= rental.notes
-      %td= link_to 'Show', rental
-      %td= link_to 'Edit', edit_rental_path(rental)
-      %td= link_to 'Destroy', rental, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+      - @rentals.each do |rental|
+        %tr
+          %td= rental.client.name
+          %td= rental.house.address
+          %td= rental.start_date
+          %td= rental.end_date
+          %td= link_to "Ir", rental
 %br
-
-= link_to 'New Rental', new_rental_path
