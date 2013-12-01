@@ -1,11 +1,15 @@
 == TO DO
 
+* secure login
+* better registration
+* secure cookie
+
+
 * Specs
 * Infinite session
 * Production configs
 
 
-=Bugs
 
 
 =After

@@ -1,8 +1,9 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
-    @rentals = Rental.all
+    @rentals = current_user.rentals
   end
 
   def show

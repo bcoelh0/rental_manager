@@ -1,10 +1,11 @@
 class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /houses
   # GET /houses.json
   def index
-    @houses = House.all
+    @houses = current_user.houses
   end
 
   # GET /houses/1
@@ -16,7 +17,6 @@ class HousesController < ApplicationController
   def new
     @house = House.new
     @house.build_owner
-    #@owners = current_user.people.where :owner => true
     current_user.people.inject(@owners = []) { |mem, person| @owners << [person.name, person.id] if person.owner }
   end
 

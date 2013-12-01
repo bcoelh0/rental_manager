@@ -11,6 +11,7 @@ class Rental < ActiveRecord::Base
   private
 
   def empty_house?
+    p start_date
     date = start_date
     while date <= end_date
       errors.add(:not_empty, "A casa não se encontra livre para este período de tempo.") unless house.vacant?(date)
