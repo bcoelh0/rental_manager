@@ -18,6 +18,5 @@ describe "people/show" do
     rendered.should match(/Address/)
     rendered.should match(/Phone Number/)
     rendered.should match(/Email/)
-    rendered.should match(/false/)
   end
 end

@@ -6,8 +6,8 @@ class PeopleController < ApplicationController
 
 
   def index
-    @owners = current_user.people.where :owner => true
-    @clients = current_user.people.where :owner => false
+    @owners = current_user.people.where :owner => true || []
+    @clients = current_user.people.where :owner => false || []
   end
 
   def show

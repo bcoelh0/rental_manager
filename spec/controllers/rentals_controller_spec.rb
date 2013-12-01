@@ -3,9 +3,7 @@ require 'spec_helper'
 describe RentalsController do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:client) { FactoryGirl.create(:person) }
   let(:rental) { FactoryGirl.create(:rental) }
-  let(:house) { FactoryGirl.create(:house) }
   let(:valid_session) { {:user_id => user.id} }
 
   describe "GET index" do
@@ -111,12 +109,12 @@ describe RentalsController do
     before { rental }
     it "destroys the requested rental" do
       expect {
-        delete :destroy, {:id => rental.to_param}, valid_session
+        delete :destroy, { :id => rental.to_param }, valid_session
       }.to change(Rental, :count).by(-1)
     end
 
     it "redirects to the rentals list" do
-      delete :destroy, {:id => rental.to_param}, valid_session
+      delete :destroy, { :id => rental.to_param }, valid_session
       response.should redirect_to(rentals_url)
     end
   end
