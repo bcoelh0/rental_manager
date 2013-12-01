@@ -4,19 +4,13 @@ class Rental < ActiveRecord::Base
   belongs_to :user
   accepts_nested_attributes_for :client
   validates_presence_of :client, :house, :user
-  validate :empty_house?
+  #validate :empty_house?
   validate :right_dates?
 
 
   private
 
   def empty_house?
-    p start_date
-    date = start_date
-    while date <= end_date
-      errors.add(:not_empty, "A casa não se encontra livre para este período de tempo.") unless house.vacant?(date)
-      date += 1.day
-    end
   end
 
   def right_dates?

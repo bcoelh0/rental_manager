@@ -1,6 +1,8 @@
 class RentalsController < ApplicationController
+  include ApplicationHelper
+
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  before_filter :auth
 
   def index
     @rentals = current_user.rentals
@@ -39,7 +41,7 @@ class RentalsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @rental.update(rental_params)
+      if @rental.update_attributes(rental_params)
         format.html { redirect_to @rental, notice: 'Rental was successfully updated.' }
         format.json { head :no_content }
       else

@@ -20,9 +20,9 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem "database_cleaner"
   gem "debugger"
-  gem "debugger"
   gem "factory_girl_rails"
   gem "faker"
+  gem "spork-rails"
 end
 
 gem "haml", "~> 4.0.3"

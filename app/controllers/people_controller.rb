@@ -1,6 +1,9 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  include ApplicationHelper
+
+  before_filter :set_person, only: [:show, :edit, :update, :destroy]
+  before_filter :auth
+
 
   def index
     @owners = current_user.people.where :owner => true

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
+
   before_filter :set_user, :only => [:index, :edit, :select_date]
+  before_filter :auth, :only => [:index, :sign_out]
 
   def index
     @entries_yesterday, @exits_yesterday, @empty_yesterday = @user.events(Date.yesterday)

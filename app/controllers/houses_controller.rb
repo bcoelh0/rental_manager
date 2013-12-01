@@ -1,6 +1,8 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  include ApplicationHelper
+
+  before_filter :set_house, only: [:show, :edit, :update, :destroy]
+  before_filter :auth
 
   # GET /houses
   # GET /houses.json
@@ -48,7 +50,7 @@ class HousesController < ApplicationController
   # PATCH/PUT /houses/1.json
   def update
     respond_to do |format|
-      if @house.update(house_params)
+      if @house.update_attributes(house_params)
         format.html { redirect_to @house, notice: 'House was successfully updated.' }
         format.json { head :no_content }
       else
@@ -71,7 +73,7 @@ class HousesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_house
-      @house = House.find(params[:id])
+      @house ||= House.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
