@@ -5,7 +5,7 @@ class Rental < ActiveRecord::Base
   accepts_nested_attributes_for :client
   validates_presence_of :client, :house, :user
   #validate :empty_house?
-  validate :right_dates?
+  #validate :right_dates?
 
 
   private
