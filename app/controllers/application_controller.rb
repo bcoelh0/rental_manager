@@ -13,9 +13,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def new?(params)
-    params[:action] == "new"
-  end
-
-  helper_method :current_user, :new?
+  helper_method :current_user
 end

@@ -17,7 +17,7 @@
       = @house.category
 
     = link_to 'Edit', edit_house_path(@house), :class => "button"
-    = link_to 'Apagar', @person ,:method => :delete, :data => { :confirm => "Ao apagar este imóvel irá apagar aluguers associados a este." }, :class => "button alert"
+    = link_to 'Apagar', @house ,:method => :delete, :data => { :confirm => "Ao apagar este imóvel irá apagar aluguers associados a este." }, :class => "button alert"
 
   .large-6.columns
     %h4 Reservas

@@ -10,4 +10,8 @@ module ApplicationHelper
   def auth
     redirect_to root_path unless signed_in?
   end
+
+  def new?(params)
+    params[:action] == "new"
+  end
 end

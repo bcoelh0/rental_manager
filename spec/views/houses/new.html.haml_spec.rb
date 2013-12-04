@@ -1,15 +1,18 @@
 require 'spec_helper'
 
 describe "houses/new" do
-  before(:each) do
-    assign(:house, stub_model(House).as_new_record)
+  before do
+    @house = FactoryGirl.build(:house)
+    @owners = [FactoryGirl.create(:person), FactoryGirl.create(:person)]
   end
 
-  it "renders new house form" do
+  it "renders the new house form" do
     render
 
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", houses_path, "post" do
+      assert_select "input#house_address", :count => 1
+      assert_select "input#house_category", :count => 1
     end
   end
 end
+

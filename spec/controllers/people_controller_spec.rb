@@ -4,14 +4,18 @@ describe PeopleController do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:person) { FactoryGirl.create(:person, :user => user) }
-  let(:valid_session) { {:user_id => user.id} }
   let(:valid_session) { { :user_id => user.id } }
 
   describe "GET index" do
     let(:owner) { FactoryGirl.create(:person, :owner => true, :user => user) }
     let(:client) { FactoryGirl.create(:person, :user => user) }
 
-    it "assigns all people as @people" do
+    before do
+      user.people << client
+      user.people << owner
+    end
+
+    it "assigns all people as @clients and @owners" do
       get :index, {}, valid_session
       assigns(:owners).should eq([owner])
       assigns(:clients).should eq([client])
@@ -41,7 +45,7 @@ describe PeopleController do
 
       it "assigns the requested person as @person" do
         put :update, { :id => person.to_param, :person => person.attributes },
-                       valid_session
+                      valid_session
         assigns(:person).should eq(person)
       end
 

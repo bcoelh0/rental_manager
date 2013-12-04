@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe "houses/show" do
   before(:each) do
-    @house = FactoryGirl.create(:house, :owner => FactoryGirl.create(:person))
+    @owner = FactoryGirl.create(:person)
+    @house = FactoryGirl.create(:house, :owner => @owner)
   end
 
   it "renders attributes in <p>" do

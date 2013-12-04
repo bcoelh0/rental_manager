@@ -30,4 +30,4 @@
       = @rental.notes
 
     = link_to 'Edit', edit_rental_path(@rental), :class => "button"
-    = link_to 'Apagar', @person ,:method => :delete, :data => { :confirm => "Deseja apagar esta reserva?" }, :class => "button alert"
+    = link_to 'Apagar', @rental ,:method => :delete, :data => { :confirm => "Deseja apagar esta reserva?" }, :class => "button alert"

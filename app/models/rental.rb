@@ -7,7 +7,6 @@ class Rental < ActiveRecord::Base
   #validate :empty_house?
   #validate :right_dates?
 
-
   private
 
   def empty_house?
