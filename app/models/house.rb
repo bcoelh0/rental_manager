@@ -6,12 +6,6 @@ class House < ActiveRecord::Base
   validates_presence_of :owner, :user
 
   def vacant?(date)
-    if rentals.empty?
-      true
-    else
-      rentals.each do |rental|
-        return not(rental.start_date <= date and rental.end_date > date)
-      end
-    end
+    rentals.where("start_date <= ? AND end_date > ?", date, date).empty?
   end
 end
