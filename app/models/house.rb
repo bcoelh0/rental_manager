@@ -5,7 +5,13 @@ class House < ActiveRecord::Base
   accepts_nested_attributes_for :owner
   validates_presence_of :owner, :user
 
-  def vacant?(date)
-    rentals.where("start_date <= ? AND end_date > ?", date, date).empty?
+  def vacant?(rental = nil, date)
+    if rental.nil? or rental.new_record?
+      rentals.where("start_date <= ? AND end_date > ?",
+        date, date).empty?
+    else
+      rentals.where("start_date <= ? AND end_date > ? AND id != ?",
+        date, date, rental.id).empty?
+    end
   end
 end

@@ -11,7 +11,7 @@ class Rental < ActiveRecord::Base
 
   def empty_house?
     start_date.upto(end_date) do |date|
-      unless house.vacant?(date)
+      unless house.vacant?(self, date)
         errors.add(:not_empty, "O imóvel não se encontra disponível nas datas escolhidas")
         break
       end
