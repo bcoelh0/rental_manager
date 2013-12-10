@@ -10,25 +10,6 @@ class UsersController < ApplicationController
     @entries_tomorrow, @exits_tomorrow, @empty_tomorrow = @user.events(Date.tomorrow)
   end
 
-  def sign_in
-    redirect_to users_path if current_user
-    @user = User.new
-  end
-
-  def signing_in
-    if user_id = User.sign_in(user_params)
-      session[:user_id] = user_id
-      redirect_to users_path
-    else
-      redirect_to sign_in_users_path
-    end
-  end
-
-  def sign_out
-    reset_session
-    redirect_to root_path
-  end
-
   def new
     @user = User.new
   end

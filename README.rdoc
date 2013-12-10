@@ -1,6 +1,9 @@
 == TO DO
 
 * secure login
+  * add remember_token
+  * implement sign_out
+
 * better registration
 * secure cookie
 
