@@ -4,12 +4,9 @@
 * better registration
 * secure cookie
 
-
 * Specs
 * Infinite session
 * Production configs
-
-
 
 
 =After

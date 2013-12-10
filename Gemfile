@@ -22,7 +22,8 @@ group :development, :test do
   gem "debugger"
   gem "factory_girl_rails"
   gem "faker"
-  gem "spork-rails"
+  #gem "guard-rspec"
+  #gem "guard-cucumber"
 end
 
 gem "haml", "~> 4.0.3"
