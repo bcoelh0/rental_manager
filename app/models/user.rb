@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :rentals
   has_many :people
   validates_presence_of :email, :password
+  has_secure_password
 
   def self.sign_in(params)
     if (user = User.find_by_email params[:email]) and user.password == User.encrypt(params[:password])
